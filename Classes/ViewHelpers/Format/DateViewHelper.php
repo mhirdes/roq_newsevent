@@ -1,4 +1,5 @@
 <?php
+namespace Roquin\RoqNewsevent\ViewHelpers\Format;
 /***************************************************************
 *  Copyright notice
 *
@@ -28,7 +29,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_RoqNewsevent_ViewHelpers_Format_DateViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class DateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper {
 
 	/**
 	 * Render the supplied DateTime object as a formatted date.
@@ -38,6 +39,7 @@ class Tx_RoqNewsevent_ViewHelpers_Format_DateViewHelper extends Tx_Fluid_Core_Vi
 	 * @param bool $currentDate if true, the current date is used
 	 * @param bool $strftime if true, the strftime is used instead of date()
 	 * @return string Formatted date
+	 * @throws \TYPO3\CMS\Fluid\Core\ViewHelper\Exception
 	 */
 	public function render($date = NULL, $format = '%Y-%m-%d', $currentDate = FALSE, $strftime = TRUE) {
 		if ($currentDate) {
@@ -54,11 +56,11 @@ class Tx_RoqNewsevent_ViewHelpers_Format_DateViewHelper extends Tx_Fluid_Core_Vi
 				return '';
 			}
 		}
-		if (!$date instanceof DateTime) {
+		if (!$date instanceof \DateTime) {
 			try {
-				$date = new DateTime($date);
-			} catch (Exception $exception) {
-				throw new Tx_Fluid_Core_ViewHelper_Exception('"' . $date . '" could not be parsed by DateTime constructor.', 1241722579);
+				$date = new \DateTime($date);
+			} catch (\Exception $exception) {
+				throw new \TYPO3\CMS\Fluid\Core\ViewHelper\Exception('"' . $date . '" could not be parsed by DateTime constructor.', 1241722579);
 			}
 		}
 

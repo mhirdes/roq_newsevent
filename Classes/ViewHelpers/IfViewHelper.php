@@ -1,5 +1,5 @@
 <?php
-
+namespace Roquin\RoqNewsevent\ViewHelpers;
 /*                                                                        *
  * This script belongs to the FLOW3 package "Fluid".                      *
  *                                                                        *
@@ -98,7 +98,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @api
  */
-class Tx_RoqNewsevent_ViewHelpers_IfViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractConditionViewHelper {
+class IfViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper {
 
 	public function initializeArguments() {
 		parent::initializeArguments();
@@ -107,8 +107,8 @@ class Tx_RoqNewsevent_ViewHelpers_IfViewHelper extends Tx_Fluid_Core_ViewHelper_
 
 	/**
 	 * renders <f:then> child if $condition is true, otherwise renders <f:else> child.
-	 *
 	 * @return string the rendered string
+	 * @throws \Exception
 	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 * @author Bastian Waidelich <bastian@typo3.org>
 	 * @api
@@ -134,18 +134,18 @@ class Tx_RoqNewsevent_ViewHelpers_IfViewHelper extends Tx_Fluid_Core_ViewHelper_
 			}
 		} elseif (is_object($condition)) {
 			if ($condition instanceof Iterator && method_exists($condition, 'count')) {
-				return (call_user_method('count', $condition) > 0);
+				return (call_user_func('count', $condition) > 0);
 			} else if ($condition instanceof DateTime) {
 				return $this->renderThenChild();
 			} else if ($condition instanceof stdClass) {
 				return $this->renderThenChild();
 			} else {
-				$access = t3lib_div::makeInstance('Tx_Extbase_Reflection_ObjectAccess');
+				$access = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Reflection_ObjectAccess');
 				$propertiesCount = count($access->getGettableProperties($condition));
 				if ($propertiesCount > 0) {
 					return $this->renderThenChild();
 				} else {
-					throw new Exception('Unknown object type in IfViewHelper condition: ' . get_class($condition), 1309493049);
+					throw new \Exception('Unknown object type in IfViewHelper condition: ' . get_class($condition), 1309493049);
 				}
 			}
 		}
@@ -154,10 +154,10 @@ class Tx_RoqNewsevent_ViewHelpers_IfViewHelper extends Tx_Fluid_Core_ViewHelper_
 		$singleQuoteCount = substr_count($condition, '\'');
 		$escapedSingleQuoteCount = substr_count($condition, '\\\'');
 		if ($rightParenthesisCount !== $leftParenthesisCount) {
-			throw new Exception('Syntax error in IfViewHelper condition, mismatched number of opening and closing paranthesis', 1309490125);
+			throw new \Exception('Syntax error in IfViewHelper condition, mismatched number of opening and closing paranthesis', 1309490125);
 		}
 		if (($singleQuoteCount-$escapedSingleQuoteCount) % 2 != 0) {
-			throw new Exception('Syntax error in IfViewHelper condition, mismatched number of unescaped single quotes', 1309490125);
+			throw new \Exception('Syntax error in IfViewHelper condition, mismatched number of unescaped single quotes', 1309490125);
 		}
 
 		$evaluation             = NULL;
@@ -166,7 +166,7 @@ class Tx_RoqNewsevent_ViewHelpers_IfViewHelper extends Tx_Fluid_Core_ViewHelper_
 
 		@eval($evaluationExpression);
 		if ($evaluation === NULL) {
-			throw new Exception('Syntax error while analyzing computed IfViewHelper expression: ' . $evaluationExpression, 1309537403);
+			throw new \Exception('Syntax error while analyzing computed IfViewHelper expression: ' . $evaluationExpression, 1309537403);
 			return $this->renderElseChild();
 		} else if ($evaluation === TRUE) {
 			return $this->renderThenChild();

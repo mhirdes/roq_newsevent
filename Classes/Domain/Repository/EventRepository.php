@@ -1,5 +1,7 @@
 <?php
 
+namespace Roquin\RoqNewsevent\Domain\Repository;
+
 /**
  * Copyright (c) 2012, ROQUIN B.V. (C), http://www.roquin.nl
  *
@@ -13,16 +15,16 @@
  * @subpackage roq_newsevent
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_RoqNewsevent_Domain_Repository_EventRepository extends Tx_News_Domain_Repository_NewsRepository {
+class EventRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository {
 
     /**
      * Returns the constraint to determine if a news event is active or not (archived)
      *
      * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
-     * @return Tx_Extbase_Persistence_QOM_Constraint $constraint
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface $constraint
      */
     protected function createIsActiveConstraint(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query) {
-        /** @var $constraint Tx_Extbase_Persistence_QOM_Constraint */
+        /** @var \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface $constraint */
         $constraint = NULL;
         $timestamp  = time(); // + date('Z');
 
@@ -54,12 +56,12 @@ class Tx_RoqNewsevent_Domain_Repository_EventRepository extends Tx_News_Domain_R
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
-     * @param Tx_News_Domain_Model_DemandInterface $demand
+     * @param \GeorgRinger\News\Domain\Model\DemandInterface $demand
      * @return array
-     * @throws InvalidArgumentException
-     * @throws Exception
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
-    protected function createConstraintsFromDemand(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand) {
+    protected function createConstraintsFromDemand(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, \GeorgRinger\News\Domain\Model\DemandInterface $demand) {
         $constraints    = array();
 
         if ($demand->getCategories() && $demand->getCategories() !== '0') {

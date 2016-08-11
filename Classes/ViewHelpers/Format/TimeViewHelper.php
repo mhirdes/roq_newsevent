@@ -1,5 +1,5 @@
 <?php
-
+namespace Roquin\RoqNewsevent\ViewHelpers\Format;
 /*                                                                        *
  * This script belongs to the FLOW3 package "Fluid".                      *
  *                                                                        *
@@ -19,6 +19,8 @@
  *                                                                        *
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
+use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3\CMS\Fluid\Core\ViewHelper\Exception;
 
 /**
  * Formats a DateTime object.
@@ -84,7 +86,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @api
  */
-class Tx_RoqNewsevent_ViewHelpers_Format_TimeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class TimeViewHelper extends AbstractViewHelper {
 
 	/**
 	 * Render the supplied DateTime object as a formatted date.
@@ -104,11 +106,11 @@ class Tx_RoqNewsevent_ViewHelpers_Format_TimeViewHelper extends Tx_Fluid_Core_Vi
 			}
 		}
 
-		if (!$time instanceof DateTime) {
+		if (!$time instanceof \DateTime) {
 			try {
-                $time = new DateTime($time);
-			} catch (Exception $exception) {
-				throw new Tx_Fluid_Core_ViewHelper_Exception('"' . $time . '" could not be parsed by DateTime constructor.', 1241722579);
+                $time = new \DateTime($time);
+			} catch (\Exception $exception) {
+				throw new \Exception('"' . $time . '" could not be parsed by DateTime constructor.', 1241722579);
 			}
 		}
 

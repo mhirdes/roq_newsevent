@@ -1,5 +1,7 @@
 <?php
 
+namespace Roquin\RoqNewsevent\Domain\Model;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -30,7 +32,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_RoqNewsevent_Domain_Model_Event extends Tx_News_Domain_Model_News {
+class Event extends \GeorgRinger\News\Domain\Model\News {
 
     /**
    	 * Is event
@@ -42,7 +44,7 @@ class Tx_RoqNewsevent_Domain_Model_Event extends Tx_News_Domain_Model_News {
 	/**
 	 * Event start date
 	 *
-	 * @var DateTime
+	 * @var \DateTime
 	 * @validate NotEmpty
 	 */
 	protected $eventStartdate;
@@ -50,21 +52,21 @@ class Tx_RoqNewsevent_Domain_Model_Event extends Tx_News_Domain_Model_News {
 	/**
 	 * Event start time
 	 *
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $eventStarttime;
 
 	/**
 	 * Event end date
 	 *
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $eventEnddate;
 
 	/**
 	 * Event end time
 	 *
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $eventEndtime;
 
@@ -107,7 +109,7 @@ class Tx_RoqNewsevent_Domain_Model_Event extends Tx_News_Domain_Model_News {
 	/**
 	 * Returns the eventStartdate
 	 *
-	 * @return DateTime $eventStartdate
+	 * @return \DateTime $eventStartdate
 	 */
 	public function getEventStartdate() {
 		return $this->eventStartdate;
@@ -116,7 +118,7 @@ class Tx_RoqNewsevent_Domain_Model_Event extends Tx_News_Domain_Model_News {
 	/**
 	 * Sets the eventStartdate
 	 *
-	 * @param DateTime $eventStartdate
+	 * @param \DateTime $eventStartdate
 	 * @return void
 	 */
 	public function setEventStartdate($eventStartdate) {
@@ -126,7 +128,7 @@ class Tx_RoqNewsevent_Domain_Model_Event extends Tx_News_Domain_Model_News {
 	/**
 	 * Returns the eventStarttime
 	 *
-	 * @return DateTime $eventStarttime
+	 * @return \DateTime $eventStarttime
 	 */
 	public function getEventStarttime() {
 		return $this->eventStarttime;
@@ -135,7 +137,7 @@ class Tx_RoqNewsevent_Domain_Model_Event extends Tx_News_Domain_Model_News {
 	/**
 	 * Sets the eventStarttime
 	 *
-	 * @param DateTime $eventStarttime
+	 * @param \DateTime $eventStarttime
 	 * @return void
 	 */
 	public function setEventStarttime($eventStarttime) {
@@ -145,7 +147,7 @@ class Tx_RoqNewsevent_Domain_Model_Event extends Tx_News_Domain_Model_News {
 	/**
 	 * Returns the eventEnddate
 	 *
-	 * @return DateTime $eventEnddate
+	 * @return \DateTime $eventEnddate
 	 */
 	public function getEventEnddate() {
 		return $this->eventEnddate;
@@ -154,7 +156,7 @@ class Tx_RoqNewsevent_Domain_Model_Event extends Tx_News_Domain_Model_News {
 	/**
 	 * Sets the eventEnddate
 	 *
-	 * @param DateTime $eventEnddate
+	 * @param \DateTime $eventEnddate
 	 * @return void
 	 */
 	public function setEventEnddate($eventEnddate) {
@@ -164,7 +166,7 @@ class Tx_RoqNewsevent_Domain_Model_Event extends Tx_News_Domain_Model_News {
 	/**
 	 * Returns the eventEndtime
 	 *
-	 * @return DateTime $eventEndtime
+	 * @return \DateTime $eventEndtime
 	 */
 	public function getEventEndtime() {
 		return $this->eventEndtime;
@@ -173,7 +175,7 @@ class Tx_RoqNewsevent_Domain_Model_Event extends Tx_News_Domain_Model_News {
 	/**
 	 * Sets the eventEndtime
 	 *
-	 * @param DateTime $eventEndtime
+	 * @param \DateTime $eventEndtime
 	 * @return void
 	 */
 	public function setEventEndtime($eventEndtime) {

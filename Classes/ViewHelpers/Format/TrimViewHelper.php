@@ -1,4 +1,7 @@
 <?php
+
+namespace Roquin\RoqNewsevent\ViewHelpers\Format;
+
 /**
  * Copyright (c) 2012, ROQUIN B.V. (C), http://www.roquin.nl
  *
@@ -8,11 +11,13 @@
  * @description:    ViewHelper to trim content with PHP trim function
  */
 
+use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 define('CR', "\r");          // Carriage Return: Mac
 define('LF', "\n");          // Line Feed: Unix
 define('CRLF', "\r\n");      // Carriage Return and Line Feed: Windows
 
-class Tx_RoqNewsevent_ViewHelpers_Format_TrimViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class TrimViewHelper extends AbstractViewHelper {
 
 	/**
 	 * @param boolean $replaceDoubleSpaces Flag which defines if double spaces must be replaced with single spaces
