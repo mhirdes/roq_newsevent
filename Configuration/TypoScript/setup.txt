@@ -34,8 +34,8 @@ config.tx_extbase {
 plugin.tx_news {
     view {
         event {
-            partialRootPath = {$plugin.roq_newsevent.view.partialRootPath}
-            templateRootPath = {$plugin.roq_newsevent.view.templateRootPath}
+            partialRootPaths.0 = {$plugin.roq_newsevent.view.partialRootPath}
+            templateRootPaths.0 = {$plugin.roq_newsevent.view.templateRootPath}
         }
 	}
 
