@@ -23,10 +23,10 @@ class TranslateViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\TranslateViewHelp
 	 * @return string The translated key or tag body if key doesn't exist
 	 */
 	public function render($key = null, $id = null, $default = null, $htmlEscape = null, array $arguments = null, $extensionName = null) {
-        $value = parent::render();
+        $value = parent::render($key);
 
         if(!isset($value)) {
-            $value = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($this->arguments['key'], 'roq_newsevent', $this->arguments);
+            $value = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key, 'roq_newsevent', $this->arguments);
         }
 
         return $value;
